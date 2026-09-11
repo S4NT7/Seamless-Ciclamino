@@ -237,6 +237,53 @@ header.site-nav {
   color: var(--ink-soft);
 }
 
+/* ---------- Editorial banner (Inicio) ---------- */
+.editorial-banner {
+  position: relative;
+  max-width: var(--max);
+  margin: 48px auto 0;
+  padding: 0 24px;
+}
+.editorial-banner img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 18px;
+  filter: brightness(0.82);
+}
+.editorial-inner {
+  position: absolute;
+  inset: 0 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 40px;
+  color: #F4F0E8;
+}
+.editorial-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+  opacity: 0.9;
+}
+.editorial-inner h2 {
+  font-size: clamp(24px, 3.6vw, 38px);
+  line-height: 1.1;
+  margin: 0 0 12px;
+  max-width: 16ch;
+  color: #F4F0E8;
+}
+.editorial-lede { margin: 0 0 20px; max-width: 40ch; font-size: 14.5px; opacity: 0.92; }
+.editorial-inner .btn--solid { background: #F4F0E8; color: var(--accent); }
+@media (max-width: 640px) {
+  .editorial-banner img { aspect-ratio: 3/4; }
+  .editorial-inner { padding: 0 24px; align-items: flex-end; padding-bottom: 32px; }
+}
+
 /* ---------- Category teaser tiles (Inicio) ---------- */
 .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 @media (max-width: 700px) { .teaser-grid { grid-template-columns: 1fr; } }
@@ -270,6 +317,10 @@ header.site-nav {
 
 .pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
 .pcard img.pc-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; }
+.pc-photo-stack { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; }
+.pc-photo-stack .pc-photo { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pc-photo-stack .pc-photo--flat { opacity: 0; object-fit: contain; background: var(--surface-2); transition: opacity .2s ease; }
+.pc-photo-stack:hover .pc-photo--flat { opacity: 1; }
 .pc-photo--empty {
   width: 100%;
   aspect-ratio: 3/4;
