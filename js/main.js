@@ -1,26 +1,28 @@
-// Seamless — comportamiento compartido del sitio
-// Menú móvil: abre/cierra el nav y lo cierra al elegir un enlace o al agrandar la ventana.
-
-document.addEventListener('DOMContentLoaded', function () {
-  var toggle = document.querySelector('.nav-toggle');
-  var links = document.querySelector('.nav-links');
-  if (!toggle || !links) return;
-
-  function closeMenu() {
-    links.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
+(function () {
+  var lb = document.getElementById('lb');
+  var big = lb.querySelector('img');
+  function openLb(src, alt) {
+    big.src = src;
+    big.alt = alt || '';
+    lb.classList.add('open');
+    document.documentElement.style.overflow = 'hidden';
   }
-
-  toggle.addEventListener('click', function () {
-    var isOpen = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  function closeLb() {
+    lb.classList.remove('open');
+    document.documentElement.style.overflow = '';
+    big.removeAttribute('src');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.pc-photo-wrap'), function (wrap) {
+    var img = wrap.querySelector('img');
+    if (!img || !img.getAttribute('data-full')) return;
+    wrap.setAttribute('role', 'button');
+    wrap.setAttribute('tabindex', '0');
+    wrap.setAttribute('aria-label', 'Ampliar foto: ' + (img.alt || ''));
+    wrap.addEventListener('click', function () { openLb(img.getAttribute('data-full'), img.alt); });
+    wrap.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(img.getAttribute('data-full'), img.alt); }
+    });
   });
-
-  links.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', closeMenu);
-  });
-
-  window.addEventListener('resize', function () {
-    if (window.innerWidth > 760) closeMenu();
-  });
-});
+  lb.addEventListener('click', function (e) { if (e.target !== big) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+})();
