@@ -12,17 +12,18 @@
   --accent: #5C1F2E;
   --accent-2: #7A2C40;
   --on-accent: #F4F0E8;
+  --fit: #5C1F2E;
   --max: 1160px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #1C1815; --surface: #241F1B; --surface-2: #2C2621; --ink: #F4F0E8;
-    --ink-soft: #B8AC9C; --line: #3A322B; --accent: #C97D91; --accent-2: #DA97A8; --on-accent: #241F1B;
+    --ink-soft: #B8AC9C; --line: #3A322B; --accent: #C97D91; --accent-2: #DA97A8; --on-accent: #241F1B; --fit: #FFFFFF;
   }
 }
 :root[data-theme="dark"] {
   --bg: #1C1815; --surface: #241F1B; --surface-2: #2C2621; --ink: #F4F0E8;
-  --ink-soft: #B8AC9C; --line: #3A322B; --accent: #C97D91; --accent-2: #DA97A8; --on-accent: #241F1B;
+  --ink-soft: #B8AC9C; --line: #3A322B; --accent: #C97D91; --accent-2: #DA97A8; --on-accent: #241F1B; --fit: #FFFFFF;
 }
 
 * { box-sizing: border-box; }
@@ -127,6 +128,8 @@ h1.brand-title {
 .pc-code { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); background: var(--surface-2); padding: 3px 7px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; }
 .pc-price { font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 600; color: var(--accent); margin: 0; }
 .pc-mod { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; margin: 0; font-style: italic; }
+.pc-fit { font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.45; color: var(--fit); margin: 0; }
+.pc-sizes { white-space: nowrap; word-spacing: -0.3em; }
 .pc-colors { margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
 .sw-row {
   display: grid;
